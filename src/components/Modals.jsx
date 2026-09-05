@@ -103,8 +103,8 @@ export function EnquiryModal({ onClose }) {
     setSending(true);
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_8e8x6sf',
+        'template_6jcqpp9',
         {
           from_name: form.name,
           from_email: form.email,
@@ -113,7 +113,7 @@ export function EnquiryModal({ onClose }) {
           message: form.message,
           to_email: 'harsheasyskill501@gmail.com',
         },
-        { publicKey: 'YOUR_PUBLIC_KEY' }
+        { publicKey: 'QsNIuxTukZmF0XAQn' }
       );
       setToast({ msg: "Thank you! Your message has been sent successfully. Harsh will contact you shortly.", success: true });
       setTimeout(() => { setToast(null); onClose(); }, 4500);
