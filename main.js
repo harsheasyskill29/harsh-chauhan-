@@ -6,6 +6,35 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
+  // --- THEME SWITCHER LOGIC ---
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+
+  // Check user preference in localStorage
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  if (currentTheme === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  const toggleTheme = () => {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  };
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+  }
+  if (themeToggleMobileBtn) {
+    themeToggleMobileBtn.addEventListener('click', toggleTheme);
+  }
+
   // --- NAVIGATION EFFECTS ---
   const header = document.getElementById('navbar-header');
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -20,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     // Header effect
     if (window.scrollY > 20) {
-      header.classList.add('bg-slate-900/80', 'backdrop-blur-md', 'border-b', 'border-slate-800', 'shadow-lg');
+      header.classList.add('glass-nav', 'border-b', 'border-brand-border', 'shadow-md');
       header.classList.remove('bg-transparent');
     } else {
-      header.classList.remove('bg-slate-900/80', 'backdrop-blur-md', 'border-b', 'border-slate-800', 'shadow-lg');
+      header.classList.remove('glass-nav', 'border-b', 'border-brand-border', 'shadow-md');
       header.classList.add('bg-transparent');
     }
 
@@ -47,11 +76,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     navLinks.forEach(link => {
-      link.classList.remove('text-white', 'after:scale-x-100');
-      link.classList.add('text-slate-400');
+      link.classList.remove('text-brand-accent', 'after:scale-x-100');
+      link.classList.add('text-brand-secondary');
       if (link.getAttribute('href') === `#${currentSectionId}`) {
-        link.classList.remove('text-slate-400');
-        link.classList.add('text-white', 'after:scale-x-100');
+        link.classList.remove('text-brand-secondary');
+        link.classList.add('text-brand-accent', 'after:scale-x-100');
+      }
+    });
+
+    // Update glowing timeline progress line on scroll
+    updateTimelineGlow();
+  });
+
+  // Timeline Scroll-based Glowing Progress Line & Active Milestone Dots Logic
+  const timelineContainer = document.getElementById('experience-timeline');
+  const timelineGlowLine = document.getElementById('timeline-glow-line');
+
+  const updateTimelineGlow = () => {
+    if (!timelineContainer || !timelineGlowLine) return;
+
+    const rect = timelineContainer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Start progress when top of timeline enters screen (75% viewport)
+    // Reach 100% full height when bottom of timeline reaches upper screen (25% viewport)
+    const startPoint = windowHeight * 0.75;
+    const endPoint = windowHeight * 0.25;
+
+    const scrolledDistance = startPoint - rect.top;
+    const totalDistance = rect.height + (startPoint - endPoint);
+
+    let progress = scrolledDistance / totalDistance;
+    progress = Math.max(0, Math.min(1, progress));
+
+    // Cover height dynamically from top-0 downward (0% to 100%)
+    timelineGlowLine.style.height = `${(progress * 100).toFixed(1)}%`;
+
+    // Activate dot glow & pulse when corresponding milestone enters viewport focus area
+    const timelineItems = timelineContainer.querySelectorAll('.relative.reveal');
+    timelineItems.forEach(item => {
+      const dot = item.querySelector('.timeline-dot');
+      if (!dot) return;
+
+      const itemRect = item.getBoundingClientRect();
+      if (itemRect.top < windowHeight * 0.7 && itemRect.bottom > windowHeight * 0.2) {
+        dot.classList.add('active-dot');
+      } else {
+        dot.classList.remove('active-dot');
+      }
+    });
+  };
+
+  // Run on page load
+  updateTimelineGlow();
+
+  // --- SERVICE ACCORDION DROPDOWN ---
+  const serviceAccordions = document.querySelectorAll('.service-accordion');
+  serviceAccordions.forEach(card => {
+    card.addEventListener('click', () => {
+      const isOpen = card.classList.contains('is-open');
+
+      // Close all other service cards first (only 1 open at a time)
+      serviceAccordions.forEach(c => c.classList.remove('is-open'));
+
+      // If this card wasn't already open, open it
+      if (!isOpen) {
+        card.classList.add('is-open');
       }
     });
   });
@@ -185,44 +275,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // --- PORTFOLIO FILTERING AND MODAL ---
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Toggle Active Button Styles
-      filterButtons.forEach(b => b.classList.remove('bg-white', 'text-black'));
-      filterButtons.forEach(b => b.classList.add('bg-slate-800', 'text-slate-300'));
-      btn.classList.remove('bg-slate-800', 'text-slate-300');
-      btn.classList.add('bg-white', 'text-black');
+  // Helper to get correct video path depending on window location protocol
+  const getCorrectPath = (path) => {
+    if (!path) return '';
+    if (window.location.protocol === 'file:') {
+      // For local folder direct run, resolve relative to public directory
+      const cleanPath = path.startsWith('/') ? path.substring(1) : path;
+      return 'public/' + cleanPath;
+    }
+    return path;
+  };
 
-      const filterValue = btn.getAttribute('data-filter');
+  // Set up Hero Profile Video source
+  const heroVideo = document.getElementById('hero-profile-video');
+  if (heroVideo) {
+    const rawPath = '/videos/profile video.mp4';
+    const resolvedPath = getCorrectPath(rawPath);
+    heroVideo.src = encodeURI(resolvedPath);
+  }
 
-      portfolioItems.forEach(item => {
-        // Animate out, filter, then animate in
-        item.style.transform = 'scale(0.9)';
-        item.style.opacity = '0';
-        
-        setTimeout(() => {
-          if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
-            item.style.display = 'block';
-            setTimeout(() => {
-              item.style.transform = 'scale(1)';
-              item.style.opacity = '1';
-            }, 50);
-          } else {
-            item.style.display = 'none';
-          }
-        }, 300);
-      });
-    });
-  });
-
+  // --- PORTFOLIO DATA STRUCTURE ---
   const projectsData = {
     1: {
       title: "Moponasa Helmet Brand Identity",
       category: "Graphic Design / Brand Identity",
+      filterCategory: "graphic",
       image: "assets/moponasa_stationery.jpg",
       images: [
         "assets/moponasa_stationery.jpg",
@@ -244,30 +321,106 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: "Developed a cohesive corporate brand identity system, custom product packaging boxes, and stationery suite for Moponasa Helmet. Formulated custom minimalist logo typography, notebook layouts, business cards, and tag guidelines reflecting high-end utility aesthetics."
     },
     2: {
-      title: "Cinematic Color Grading & Editing",
-      category: "Video Editing / Post Production",
-      image: "assets/project_video_editing.png",
-      images: [
-        "assets/project_video_editing.png"
-      ],
-      client: "Cinematic Studio Niche",
+      title: "Claude SaaS Product Animation",
+      category: "Video Editing / SaaS Animation",
+      filterCategory: "video",
+      image: "assets/claude_saas_thumbnail.png",
+      video: "/videos/claude saas animation.mp4",
+      client: "Claude SaaS",
       year: "2026",
-      desc: "Professional timeline editing, post-production audio master design, cinematic color grading, and dynamic visual tracking layers. Engineered high-converting cinematic trailers and advertisement video sequences optimized for modern social campaigns."
+      desc: "An engaging SaaS product walkthrough and conceptual feature animation sequence for Claude. Built using high-fidelity vector UI mockups, smooth viewport pan transitions, and keyframe-animated component highlights."
     },
     3: {
-      title: "Luxury Abstract Geometric Renders",
-      category: "3D Visuals / Art Direction",
-      image: "assets/project_3d_visual.png",
-      images: [
-        "assets/project_3d_visual.png"
-      ],
-      client: "Creative Studio Concept",
+      title: "3D Rubik's Cube Animation",
+      category: "3D Visuals / Animation",
+      filterCategory: "3d",
+      image: "assets/rubik_thumbnail.jpg", // High quality 3D preview thumbnail poster
+      video: "/videos/Rubik Cube video.mp4", // Path to your uploaded video file
+      client: "Personal Project",
       year: "2026",
-      desc: "Stunning 3D abstract visual rendering and composition featuring geometric glossy glass elements, liquid chrome reflective layers, and clean architectural lighting. Created for high-end digital branding interfaces and luxury art catalogs."
+      desc: "An interactive and detailed 3D rendering and motion simulation of a Rubik's Cube, utilizing realistic textures, glossy reflections, and smooth animation cycles."
+    },
+    4: {
+      title: "Voguel Streetwear Brand logo design",
+      category: "Graphic Design / Streetwear Branding",
+      filterCategory: "graphic",
+      image: "assets/voguel_logo_black.png",
+      images: [
+        "assets/voguel_logo_black.png",
+        "assets/voguel_brand_palette.png",
+        "assets/voguel_hoodie_mockup.png",
+        "assets/voguel_tshirt_back.png",
+        "assets/voguel_cap_mockup.png",
+        "assets/voguel_collar_detail.jpg",
+        "assets/voguel_patch_detail.jpg",
+        "assets/voguel_embroidery_detail.jpg"
+      ],
+      client: "Voguel Streetwear",
+      year: "2026",
+      desc: "Created a complete visual identity and brand package for Voguel Streetwear. Crafted custom vector typography with integrated hanger motifs, defined a minimalist monochrome brand palette, and designed high-end garment embroidery mockups and brand collateral."
+    },
+    5: {
+      title: "How Algorithms Work",
+      category: "Video Editing / Educational Animation",
+      filterCategory: "video",
+      video: "/videos/final.mp4",
+      client: "Educational Platform",
+      year: "2026",
+      desc: "A conceptual motion graphic sequence and visual breakdown detailing how modern computer algorithms search, filter, and process complex data parameters."
     }
   };
 
-  // Portfolio Modal elements
+  const portfolioGrid = document.getElementById('portfolio-grid');
+
+  // Render portfolio grid dynamically
+  const renderPortfolio = () => {
+    if (!portfolioGrid) return;
+    portfolioGrid.innerHTML = '';
+
+    Object.keys(projectsData).forEach(id => {
+      const project = projectsData[id];
+      const card = document.createElement('div');
+      card.className = 'portfolio-item group rounded-3xl overflow-hidden glass-panel border border-brand-border flex flex-col h-full transition-transform duration-500 hover:-translate-y-2';
+      card.setAttribute('data-category', project.filterCategory);
+
+      let mediaSection = '';
+      if (project.video) {
+        // Resolve path based on file protocol
+        const resolvedPath = getCorrectPath(project.video);
+        const encodedSrc = encodeURI(resolvedPath);
+        mediaSection = `
+          <div class="relative overflow-hidden aspect-video bg-brand-bg flex-shrink-0">
+            ${project.image ? `<img src="${project.image}" alt="${project.title}" class="project-poster w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 z-10" loading="lazy">` : ''}
+            <video src="${encodedSrc}" ${project.image ? `poster="${project.image}"` : ''} muted playsinline loop class="project-video w-full h-full object-cover absolute inset-0 ${project.image ? 'opacity-0 z-0' : 'opacity-100 z-10'} transition-opacity duration-300"></video>
+            <div class="absolute inset-0 bg-[#6D5CFF]/20 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm cursor-none view-project-btn z-20" data-id="${id}" data-type="video"></div>
+          </div>
+        `;
+      } else {
+        mediaSection = `
+          <div class="relative overflow-hidden aspect-video bg-brand-bg flex-shrink-0">
+            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 z-10" loading="lazy">
+            <div class="absolute inset-0 bg-[#6D5CFF]/20 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm cursor-none view-project-btn z-20" data-id="${id}" data-type="image"></div>
+          </div>
+        `;
+      }
+
+      card.innerHTML = `
+        ${mediaSection}
+        <div class="p-5 flex flex-col justify-between flex-grow">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-secondary">${project.category}</span>
+            <h3 class="text-base font-bold text-brand-primary mt-1 group-hover:text-brand-accent transition-colors">${project.title}</h3>
+          </div>
+        </div>
+      `;
+
+      portfolioGrid.appendChild(card);
+    });
+
+    setupPortfolioEvents();
+  };
+
+  // Case Study Modal elements
   const modal = document.getElementById('portfolio-modal');
   const modalCategory = document.getElementById('modal-category');
   const modalTitle = document.getElementById('modal-title');
@@ -287,21 +440,34 @@ document.addEventListener('DOMContentLoaded', () => {
     modalYear.innerText = project.year;
     modalDesc.innerText = project.desc;
 
-    // Load and render images vertically
-    const images = project.images || [project.image];
+    // Load and render media
     if (modalImagesShowcase) {
       modalImagesShowcase.innerHTML = '';
-      images.forEach((imgSrc) => {
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = project.title;
-        img.className = 'w-full max-w-5xl rounded-2xl md:rounded-3xl border border-slate-900 shadow-2xl object-contain cursor-zoom-in transition-all duration-300 hover:border-slate-800';
-        img.loading = 'lazy';
-        img.addEventListener('click', () => {
-          window.open(imgSrc, '_blank');
+      if (project.video) {
+        // If it's a video project, render a video player inside the details modal
+        const resolvedPath = getCorrectPath(project.video);
+        const encodedSrc = encodeURI(resolvedPath);
+        const videoEl = document.createElement('video');
+        videoEl.src = encodedSrc;
+        videoEl.controls = true;
+        videoEl.className = 'w-full max-w-5xl rounded-2xl md:rounded-3xl border border-slate-900 shadow-2xl object-contain bg-black aspect-video';
+        videoEl.autoplay = true;
+        modalImagesShowcase.appendChild(videoEl);
+      } else {
+        // Load and render images vertically
+        const images = project.images || [project.image];
+        images.forEach((imgSrc) => {
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = project.title;
+          img.className = 'w-full max-w-5xl rounded-2xl md:rounded-3xl border border-slate-900 shadow-2xl object-contain cursor-zoom-in transition-all duration-300 hover:border-slate-800';
+          img.loading = 'lazy';
+          img.addEventListener('click', () => {
+            window.open(imgSrc, '_blank');
+          });
+          modalImagesShowcase.appendChild(img);
         });
-        modalImagesShowcase.appendChild(img);
-      });
+      }
     }
 
     // Hide custom project hover cursor while viewing project case study
@@ -323,6 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const closeModal = () => {
     if (!modal) return;
+    
+    // Pause and clear any video inside the details modal to stop sound
+    if (modalImagesShowcase) {
+      const modalVideo = modalImagesShowcase.querySelector('video');
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.src = '';
+      }
+    }
+
     modal.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = 'auto'; // Re-enable page scrolling
     setTimeout(() => {
@@ -336,28 +512,235 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 300);
   };
 
-  // Wire up view project buttons
-  const viewProjectButtons = document.querySelectorAll('.view-project-btn');
-  viewProjectButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectId = btn.getAttribute('data-id');
-      openModal(projectId);
-    });
-  });
-
   if (modalClose) {
     modalClose.addEventListener('click', closeModal);
   }
 
-  // Keyboard support for modal (ESC to close)
+  // Video Lightbox Modal elements
+  const videoModal = document.getElementById('video-modal');
+  const videoClose = document.getElementById('video-modal-close');
+  const lightboxVideo = document.getElementById('lightbox-video');
+
+  const openVideoModal = (src) => {
+    if (!videoModal || !lightboxVideo) return;
+    
+    const resolvedPath = getCorrectPath(src);
+    lightboxVideo.src = encodeURI(resolvedPath);
+    
+    // Hide custom project hover cursor while viewing video
+    const customCursor = document.getElementById('custom-project-cursor');
+    if (customCursor) {
+      customCursor.style.display = 'none';
+    }
+
+    videoModal.classList.remove('hidden');
+    // Force reflow
+    videoModal.offsetWidth;
+    videoModal.classList.remove('opacity-0', 'pointer-events-none');
+    videoModal.classList.add('opacity-100');
+    document.body.style.overflow = 'hidden';
+
+    // Play video
+    lightboxVideo.play().catch(err => console.log('Modal video play failed:', err));
+  };
+
+  const closeVideoModal = () => {
+    if (!videoModal || !lightboxVideo) return;
+    
+    lightboxVideo.pause();
+    lightboxVideo.src = ''; // Clear source to stop buffering
+
+    videoModal.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'auto';
+
+    setTimeout(() => {
+      videoModal.classList.add('hidden');
+      // Restore custom project hover cursor display after modal closes
+      const customCursor = document.getElementById('custom-project-cursor');
+      if (customCursor) {
+        customCursor.style.display = 'flex';
+      }
+    }, 300);
+  };
+
+  if (videoClose) {
+    videoClose.addEventListener('click', closeVideoModal);
+  }
+
+  // Enquiry Modal triggers
+  const enquiryModal = document.getElementById('enquiry-modal');
+  const openEnquiryBtn = document.getElementById('open-enquiry-btn');
+  const closeEnquiryBtn = document.getElementById('enquiry-modal-close');
+
+  const openEnquiryModal = () => {
+    if (!enquiryModal) return;
+    
+    // Hide custom project hover cursor while viewing enquiry form
+    const customCursor = document.getElementById('custom-project-cursor');
+    if (customCursor) {
+      customCursor.style.display = 'none';
+    }
+
+    enquiryModal.classList.remove('hidden');
+    // Force reflow
+    enquiryModal.offsetWidth;
+    enquiryModal.classList.remove('opacity-0', 'pointer-events-none');
+    enquiryModal.classList.add('opacity-100');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeEnquiryModal = () => {
+    if (!enquiryModal) return;
+    
+    enquiryModal.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'auto';
+
+    setTimeout(() => {
+      enquiryModal.classList.add('hidden');
+      // Restore custom project hover cursor display after modal closes
+      const customCursor = document.getElementById('custom-project-cursor');
+      if (customCursor) {
+        customCursor.style.display = 'flex';
+      }
+    }, 300);
+  };
+
+  if (openEnquiryBtn) {
+    openEnquiryBtn.addEventListener('click', openEnquiryModal);
+  }
+  if (closeEnquiryBtn) {
+    closeEnquiryBtn.addEventListener('click', closeEnquiryModal);
+  }
+  if (enquiryModal) {
+    enquiryModal.addEventListener('click', (e) => {
+      if (e.target === enquiryModal) {
+        closeEnquiryModal();
+      }
+    });
+  }
+
+  // Keyboard support for modals (ESC to close)
   document.addEventListener('keydown', (e) => {
-    if (modal && !modal.classList.contains('hidden')) {
-      if (e.key === 'Escape') {
+    if (e.key === 'Escape') {
+      if (modal && !modal.classList.contains('hidden')) {
         closeModal();
+      }
+      if (videoModal && !videoModal.classList.contains('hidden')) {
+        closeVideoModal();
+      }
+      if (enquiryModal && !enquiryModal.classList.contains('hidden')) {
+        closeEnquiryModal();
       }
     }
   });
+
+  // Setup hover playback and click events
+  const setupPortfolioEvents = () => {
+    // Hover previews
+    const cards = document.querySelectorAll('.portfolio-item');
+    cards.forEach(card => {
+      const video = card.querySelector('.project-video');
+      if (!video) return;
+
+      card.addEventListener('mouseenter', () => {
+        // Pause all other video previews
+        document.querySelectorAll('.project-video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.currentTime = 0;
+            // Only hide video opacity if there's a poster image to show instead
+            if (v.closest('.portfolio-item').querySelector('.project-poster')) {
+              v.style.opacity = '0';
+            }
+          }
+        });
+
+        // Play this one
+        video.play().then(() => {
+          video.style.opacity = '1';
+        }).catch(err => console.log('Auto-play blocked:', err));
+      });
+
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+        // Only hide video opacity if there's a poster image to show instead
+        if (card.querySelector('.project-poster')) {
+          video.style.opacity = '0';
+        }
+      });
+    });
+
+    // Wire up view project buttons
+    const viewProjectButtons = document.querySelectorAll('.view-project-btn');
+    viewProjectButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = btn.getAttribute('data-id');
+        openModal(projectId);
+      });
+    });
+
+    // Custom Project Hover Cursor toggle logic
+    const customCursor = document.getElementById('custom-project-cursor');
+    if (customCursor) {
+      cards.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          customCursor.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          customCursor.style.opacity = '1';
+          customCursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        item.addEventListener('mouseleave', () => {
+          customCursor.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+          customCursor.style.opacity = '0';
+          customCursor.style.transform = 'translate(-50%, -50%) scale(0.3)';
+        });
+
+        item.addEventListener('click', () => {
+          customCursor.style.transition = 'opacity 0.1s ease, transform 0.1s ease';
+          customCursor.style.opacity = '0';
+          customCursor.style.transform = 'translate(-50%, -50%) scale(0.3)';
+        });
+      });
+    }
+  };
+
+  // Wire up filter buttons
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-brand-accent', 'text-white', 'border-transparent');
+        b.classList.add('bg-brand-white', 'border-brand-border', 'text-brand-secondary');
+      });
+      btn.classList.remove('bg-brand-white', 'border-brand-border', 'text-brand-secondary');
+      btn.classList.add('bg-brand-accent', 'text-white', 'border-transparent');
+
+      const filterValue = btn.getAttribute('data-filter');
+      const cards = document.querySelectorAll('.portfolio-item');
+
+      cards.forEach(item => {
+        item.style.transform = 'scale(0.9)';
+        item.style.opacity = '0';
+        
+        setTimeout(() => {
+          if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.transform = 'scale(1)';
+              item.style.opacity = '1';
+            }, 50);
+          } else {
+            item.style.display = 'none';
+          }
+        }, 300);
+      });
+    });
+  });
+
+  // Render portfolio on startup
+  renderPortfolio();
 
   // --- TESTIMONIALS SLIDER ---
   const testimonials = document.querySelectorAll('.testimonial-slide');
@@ -380,8 +763,8 @@ document.addEventListener('DOMContentLoaded', () => {
       slide.classList.remove('block', 'opacity-100');
       
       if (dots[idx]) {
-        dots[idx].classList.remove('bg-blue-500', 'w-6');
-        dots[idx].classList.add('bg-slate-700', 'w-2');
+        dots[idx].classList.remove('bg-brand-accent', 'w-6');
+        dots[idx].classList.add('bg-brand-border', 'w-2');
       }
     });
 
@@ -393,8 +776,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50);
 
     if (dots[currentSlide]) {
-      dots[currentSlide].classList.add('bg-blue-500', 'w-6');
-      dots[currentSlide].classList.remove('bg-slate-700', 'w-2');
+      dots[currentSlide].classList.add('bg-brand-accent', 'w-6');
+      dots[currentSlide].classList.remove('bg-brand-border', 'w-2');
     }
   };
 
@@ -512,6 +895,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Clear form
       contactForm.reset();
+
+      // Close modal
+      closeEnquiryModal();
     });
   }
 
@@ -539,9 +925,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth coordinates updates using vanilla JS requestAnimationFrame loop
     const updateCursor = () => {
       if (!firstMove) {
-        // Interpolate coordinates for a premium organic lag feel (lerp)
-        cursorX += (mouseX - cursorX) * 0.16;
-        cursorY += (mouseY - cursorY) * 0.16;
+        // Interpolate coordinates for an extra smooth organic lag feel (lerp)
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
         
         customCursor.style.left = `${cursorX}px`;
         customCursor.style.top = `${cursorY}px`;
