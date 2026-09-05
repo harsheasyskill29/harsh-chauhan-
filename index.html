@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harsh Chauhan | Premium Portfolio | Graphic Designer & Social Media Manager</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Harsh Chauhan is a premium freelance Graphic Designer & Social Media Manager. Helping brands grow through high-converting designs, visual identity, and social media strategy.">
+  <meta name="keywords" content="Harsh Chauhan, Graphic Designer, Social Media Manager, Brand Identity, Logo Design, Packaging, Content Creator, Freelance Designer">
+  <meta name="author" content="Harsh Chauhan">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Harsh Chauhan | Graphic Designer & Social Media Manager">
+  <meta property="og:description" content="Crafting premium brand experiences through strategic design, packaging, and social media management. View portfolio and hire me.">
+  <meta property="og:image" content="/assets/project_branding.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Harsh Chauhan | Graphic Designer & Social Media Manager">
+  <meta property="twitter:description" content="Crafting premium brand experiences through strategic design, packaging, and social media management.">
+
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              bg: 'var(--color-bg)',
+              accent: 'var(--color-accent)',
+              'accent-hover': 'var(--color-accent-hover)',
+              primary: 'var(--color-text-primary)',
+              secondary: 'var(--color-text-secondary)',
+              border: 'var(--color-border)',
+              white: 'var(--color-white)',
+              dark: 'var(--color-dark-section)',
+            },
+            slate: {
+              700: '#3a3a3c',
+              800: '#2c2c2e',
+              900: '#1c1c1e',
+              950: '#000000',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    // Theme setup script to prevent light-mode flash
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brand-bg text-brand-primary selection:bg-brand-accent selection:text-white">
+
+  <!-- Floating Background Blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-1/4 left-1/10 w-96 h-96 rounded-full bg-brand-accent/[0.04] blur-3xl animate-float-1"></div>
+    <div class="absolute top-2/3 right-1/10 w-96 h-96 rounded-full bg-brand-accent/[0.04] blur-3xl animate-float-2"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-accent/[0.02] blur-3xl animate-slow-pulse"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header id="navbar-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 bg-transparent">
+    <div class="w-full flex items-center justify-between relative">
+      
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center group pr-4">
+        <img src="/assets/logo.png" alt="Harsh design.co Logo" class="h-11 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
+      </a>
+
+      <!-- Desktop Nav Items (Centered) -->
+      <nav class="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <a href="#hero" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Home</a>
+        <a href="#about" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">About</a>
+        <a href="#services" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Services</a>
+        <a href="#portfolio" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Portfolio</a>
+        <a href="#process" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Process</a>
+        <a href="#experience" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Experience</a>
+        <a href="#contact" class="nav-link text-sm font-medium text-brand-secondary hover:text-brand-accent transition-colors duration-200">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA Button (Right Aligned) -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="p-2.5 rounded-xl border border-brand-border bg-brand-white text-brand-secondary hover:text-brand-accent hover:border-brand-accent transition-all duration-200 flex items-center justify-center cursor-pointer" aria-label="Toggle Theme">
+          <i data-lucide="sun" class="theme-icon-light w-5 h-5"></i>
+          <i data-lucide="moon" class="theme-icon-dark w-5 h-5"></i>
+        </button>
+        <a href="#contact" class="header-cta-btn relative inline-flex items-center justify-center rounded-xl bg-brand-accent text-white text-sm font-semibold shadow-lg shadow-brand-accent/5 overflow-hidden active:scale-95 hover:scale-[1.03] hover:bg-brand-accent-hover">
+          <span class="cta-text-default whitespace-nowrap">Hire Me</span>
+          <span class="cta-text-hover whitespace-nowrap">Let's Work Together</span>
+        </a>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex md:hidden items-center gap-3">
+        <!-- Theme Toggle Mobile -->
+        <button id="theme-toggle-mobile" class="p-2 rounded-lg border border-brand-border bg-brand-white/80 text-brand-secondary hover:text-brand-accent flex items-center justify-center cursor-pointer" aria-label="Toggle Theme">
+          <i data-lucide="sun" class="theme-icon-light w-5 h-5"></i>
+          <i data-lucide="moon" class="theme-icon-dark w-5 h-5"></i>
+        </button>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="text-brand-primary hover:text-brand-accent focus:outline-none p-2 rounded-lg bg-brand-white/80 border border-brand-border" aria-label="Toggle Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-80 z-[45] bg-brand-white/98 border-l border-brand-border p-8 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out md:hidden shadow-2xl backdrop-blur-lg">
+    <div class="flex flex-col gap-6 mt-16">
+      <a href="#hero" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Home</a>
+      <a href="#about" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">About</a>
+      <a href="#services" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Services</a>
+      <a href="#portfolio" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Portfolio</a>
+      <a href="#process" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Process</a>
+      <a href="#experience" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Experience</a>
+      <a href="#contact" class="mobile-link text-xl font-medium text-brand-secondary hover:text-brand-accent hover:translate-x-2 transition-all">Contact</a>
+    </div>
+    
+    <div class="flex flex-col gap-4 border-t border-brand-border pt-6">
+      <a href="https://wa.me/9023125130" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-accent text-white font-semibold hover:bg-brand-accent-hover transition-all">
+        <i data-lucide="phone" class="w-5 h-5"></i> Chat on WhatsApp
+      </a>
+      <p class="text-center text-xs text-brand-secondary font-medium">&copy; 2026 Harsh Chauhan. All rights reserved.</p>
+    </div>
+  </div>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="pt-36 md:pt-44 pb-12 px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+        
+        <!-- Hero Information (Left) -->
+        <div class="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left reveal">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-brand-border w-fit mx-auto lg:mx-0">
+            <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+            <span class="text-xs font-semibold text-brand-secondary uppercase tracking-widest">Available for Freelance Projects</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-brand-primary">
+            Hi, I'm <span class="accent-gradient">Harsh Chauhan</span>
+          </h1>
+          
+          <h2 class="text-2xl md:text-3xl font-bold text-brand-primary tracking-wide">
+            Graphic Designer <span class="text-brand-border">|</span> Video Editor <span class="text-brand-border">|</span> 3D Artist
+          </h2>
+
+          <p class="text-base md:text-lg text-brand-secondary max-w-2xl leading-relaxed">
+            I help businesses build powerful brands through creative design, high-end social media management, and high-converting visual content that captivates audiences.
+          </p>
+
+          <!-- Action buttons -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 justify-center lg:justify-start">
+            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-accent text-white font-bold text-center shadow-lg shadow-brand-accent/5 hover:bg-brand-accent-hover hover:scale-105 active:scale-98 transition-all duration-300 btn-premium">
+              View Portfolio
+            </a>
+            <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-transparent border border-brand-accent text-brand-accent hover:text-white font-bold text-center hover:bg-brand-accent hover:border-brand-accent transition-all duration-300">
+              Hire Me
+            </a>
+          </div>
+
+          <!-- Socials -->
+          <div class="flex items-center gap-5 mt-6 justify-center lg:justify-start">
+            <span class="text-xs uppercase tracking-widest text-brand-secondary font-semibold">Follow Me:</span>
+            <div class="flex items-center gap-3">
+              <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="https://behance.net" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Behance">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M22 14.2h-7.3c.1.9.4 1.5.9 1.9.5.4 1.2.6 2 .6 1.4 0 2.2-.6 2.5-1.9h2c-.3 1.6-1 2.7-2.2 3.4-1.2.7-2.8 1-4.7 1-2.7 0-4.8-.8-6.1-2.4C5 15.2 4.3 12.9 4.3 10c0-2.8.7-5 2.1-6.6 1.4-1.6 3.4-2.4 6-2.4 2.5 0 4.5.8 5.8 2.3 1.3 1.5 1.9 3.7 1.9 6.5v1.4H8.2zm-12-3h7.1c-.1-1-.4-1.7-.8-2.2-.5-.5-1.1-.7-1.9-.7-.8 0-1.4.2-1.9.7-.5.5-.7 1.2-.7 2.2zM2 17.8H0V6.2h5.1c1.5 0 2.7.3 3.4 1 .8.7 1.1 1.6 1.1 2.8 0 .8-.2 1.4-.7 2-.5.5-1.1.8-1.9 1 .9.2 1.6.6 2.1 1.2.5.6.8 1.4.8 2.4 0 1.2-.4 2.2-1.2 2.9-.8.7-2 1.1-3.6 1.1H2zm2-2.1h2.9c.7 0 1.3-.1 1.6-.4.4-.3.5-.7.5-1.3 0-.5-.2-.9-.5-1.1-.4-.2-.9-.3-1.6-.3H4zm0-5.1h2.6c.7 0 1.2-.1 1.5-.4.3-.3.5-.6.5-1.1s-.2-.8-.5-1.1c-.3-.3-.8-.4-1.5-.4H4z"/></svg>
+              </a>
+              <a href="https://dribbble.com" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="Dribbble">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.12a9.66 9.66 0 00-4.08-1.02c-.75 0-1.48.06-2.19.18 1.55 3.9 2.2 7.82 2.2 7.85a9.7 9.7 0 004.07-7.01zm-5.71 7.79c-.06-.18-.73-3.92-2.3-7.73a15 15 0 00-6.19 5.32 9.67 9.67 0 008.49 2.41zm-10.3-1.05a13 13 0 015.65-4.94A17 17 0 007.45 6.4a9.7 9.7 0 00-5.63 9.22zm-.9-10.68a9.68 9.68 0 004.4 7.6 15 15 0 014.28-9.08A9.7 9.7 0 001.2 9.94zm10.8-7.94c.59 0 1.17.06 1.74.16a13.3 13.3 0 00-3.94 8.5 17 17 0 00-4.48-6.1 9.72 9.72 0 016.68-2.56zm5.82 1.34a15 15 0 014.1 5.92A9.7 9.7 0 0012 2.06c2.09 0 4.07.66 5.82 1.88z"/></svg>
+              </a>
+              <a href="https://wa.me/9023125130" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent hover:scale-110 hover:-translate-y-1 transition-all duration-300" aria-label="WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.705 1.455h.008c6.56 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Hero Graphic (Right) -->
+        <div class="lg:col-span-5 flex justify-center relative reveal reveal-delay-200">
+          
+          <!-- Decorative Glowing Circles & Shapes -->
+          <div class="absolute -top-10 -left-10 w-24 h-24 rounded-full border border-brand-border animate-float-1 pointer-events-none"></div>
+          <div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full border border-brand-border animate-float-2 pointer-events-none"></div>
+          
+          <!-- Core profile image container -->
+          <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden glass-panel p-3 border-brand-border shadow-2xl hover:shadow-[0_0_40px_rgba(109,92,255,0.12)] transition-all duration-500">
+            <div class="w-full h-full rounded-2xl overflow-hidden relative group">
+              
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500 z-10 pointer-events-none"></div>
+              
+              <!-- Profile Video (Autoplay, muted, loop, cover fit) -->
+              <video id="hero-profile-video" autoplay muted loop playsinline class="w-full h-full object-cover scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out z-0"></video>
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+      
+      <!-- Section Header (Centered) -->
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">About Me</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          Crafting Digital Identities That <br class="hidden sm:inline">
+          <span class="accent-gradient">Drive Real Business Value</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Side: Stats Grid & Badges -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4 order-2 lg:order-1 reveal">
+          
+          <!-- Experience Badge Card -->
+          <div class="p-6 rounded-2xl glass-panel glass-panel-hover border-brand-border text-center flex flex-col items-center justify-center gap-2">
+            <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center">
+              <i data-lucide="briefcase" class="w-6 h-6"></i>
+            </div>
+            <span class="text-3xl font-extrabold text-brand-primary mt-2">3+</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-secondary">Years Experience</span>
+          </div>
+
+          <!-- Projects Done Card -->
+          <div class="p-6 rounded-2xl glass-panel glass-panel-hover border-brand-border text-center flex flex-col items-center justify-center gap-2">
+            <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center">
+              <i data-lucide="check-circle" class="w-6 h-6"></i>
+            </div>
+            <span class="text-3xl font-extrabold text-brand-primary mt-2">50+</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-secondary">Completed Projects</span>
+          </div>
+
+          <!-- Focus Area 1: Brand Design -->
+          <div class="col-span-2 p-6 rounded-2xl glass-panel glass-panel-hover border-brand-border flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-brand-primary">Visual Branding & Logos</span>
+              <span class="text-xs text-brand-secondary leading-normal mt-0.5">Creating cohesive, luxury identity architectures that build brand equity.</span>
+            </div>
+          </div>
+
+          <!-- Focus Area 2: Social Media Manager -->
+          <div class="col-span-2 p-6 rounded-2xl glass-panel glass-panel-hover border-brand-border flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+              <i data-lucide="trending-up" class="w-6 h-6"></i>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-brand-primary">Social Media Growth Engine</span>
+              <span class="text-xs text-brand-secondary leading-normal mt-0.5">Custom content creation, aesthetic grids planning, and campaign optimization.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Details & Narrative -->
+        <div class="lg:col-span-7 flex flex-col gap-6 order-1 lg:order-2 reveal reveal-delay-200">
+
+          <p class="text-brand-secondary leading-relaxed text-sm md:text-base">
+            I am a creative graphic designer and results-driven 3D & visual designer based in India. I specialize in designing visual solutions that capture interest and generate client engagement. With over 3+ years of professional design and creative experience, I focus on premium, minimal aesthetics for brands looking to establish a professional market presence.
+          </p>
+
+          <p class="text-brand-secondary leading-relaxed text-sm md:text-base">
+            Whether developing a luxury cosmetic packaging layout, formulating an integrated Instagram grid grid plan, or crafting high-performance advertising creatives, I deliver projects with meticulous detail, consistent delivery cycles, and strategic marketing intent.
+          </p>
+
+          <div class="border-t border-brand-border pt-6 mt-2 grid grid-cols-3 gap-4">
+            <div class="flex flex-col">
+              <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Creativity</span>
+              <span class="text-sm text-brand-primary font-medium mt-1">Unique Concepts</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Consistency</span>
+              <span class="text-sm text-brand-primary font-medium mt-1">On-Time Schedules</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Precision</span>
+              <span class="text-sm text-brand-primary font-medium mt-1">Pixel Perfect Details</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4 mb-16 reveal">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">My Services</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          What I Can <span class="accent-gradient">Do For Your Brand</span>
+        </h2>
+        <p class="text-brand-secondary text-sm md:text-base leading-relaxed">
+          From full social channels growth strategy to physical print packaging, I provide multi-disciplinary creative assets that elevate your market positioning.
+        </p>
+      </div>
+
+      <!-- Services Grid (Accordion Cards) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        
+        <!-- Service 1: Graphic Design -->
+        <div class="service-accordion p-8 rounded-3xl glass-panel glass-panel-hover border border-brand-border flex flex-col justify-between reveal cursor-pointer transition-all duration-300">
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center shadow-inner flex-shrink-0">
+                  <i data-lucide="layout" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary">Graphic Design</h3>
+              </div>
+              <div class="chevron-icon w-8 h-8 rounded-full bg-brand-white border border-brand-border text-brand-secondary flex items-center justify-center flex-shrink-0 transition-transform duration-300">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand-secondary leading-relaxed">
+              Clean, minimal, and premium visual assets that define your brand identity, print packaging, and social media layout setups.
+            </p>
+          </div>
+
+          <!-- Collapsible "What I Offer" Checklist -->
+          <div class="accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="border-t border-brand-border pt-4 mt-4 flex flex-col gap-3">
+              <h4 class="text-xs font-bold text-brand-secondary uppercase tracking-widest mb-1">What I Offer:</h4>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Brand Identity Systems & Logos</span>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Instagram Visual Grid Mockups</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Luxury Product Packaging & Labels</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Print Editorial Layouts & Brochures</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Video Editing -->
+        <div class="service-accordion p-8 rounded-3xl glass-panel glass-panel-hover border border-brand-border flex flex-col justify-between reveal reveal-delay-100 cursor-pointer transition-all duration-300">
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center shadow-inner flex-shrink-0">
+                  <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary">Video Editing</h3>
+              </div>
+              <div class="chevron-icon w-8 h-8 rounded-full bg-brand-white border border-brand-border text-brand-secondary flex items-center justify-center flex-shrink-0 transition-transform duration-300">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand-secondary leading-relaxed">
+              High-end post-production workflows, pacing adjustments, and visual effects that capture attention and drive sales.
+            </p>
+          </div>
+
+          <!-- Collapsible "What I Offer" Checklist -->
+          <div class="accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="border-t border-brand-border pt-4 mt-4 flex flex-col gap-3">
+              <h4 class="text-xs font-bold text-brand-secondary uppercase tracking-widest mb-1">What I Offer:</h4>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Cinematic Color Grading & Balancing</span>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">YouTube Video Pacing & Cutting</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Reels, Shorts & TikTok Engagement Cuts</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Social Ads Creatives & Motion Assets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: 3D Visuals -->
+        <div class="service-accordion p-8 rounded-3xl glass-panel glass-panel-hover border border-brand-border flex flex-col justify-between reveal reveal-delay-200 cursor-pointer transition-all duration-300">
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center shadow-inner flex-shrink-0">
+                  <i data-lucide="box" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary">3D Visuals</h3>
+              </div>
+              <div class="chevron-icon w-8 h-8 rounded-full bg-brand-white border border-brand-border text-brand-secondary flex items-center justify-center flex-shrink-0 transition-transform duration-300">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand-secondary leading-relaxed">
+              Ultra-realistic 3D compositions, scene renderings, and high-fidelity textures styled to match premium products.
+            </p>
+          </div>
+
+          <!-- Collapsible "What I Offer" Checklist -->
+          <div class="accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="border-t border-brand-border pt-4 mt-4 flex flex-col gap-3">
+              <h4 class="text-xs font-bold text-brand-secondary uppercase tracking-widest mb-1">What I Offer:</h4>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Abstract Geometric 3D Art Scenes</span>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Photorealistic 3D Product Mockups</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">Luxury Materials & Studio Lighting Setups</span>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-5 h-5 rounded-full bg-brand-white border border-brand-border text-brand-accent flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-xs text-brand-primary font-medium">3D Typography & Logo Extrusion Renders</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4 mb-12 reveal">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Showcase</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          Selected Creative <span class="accent-gradient">Works Gallery</span>
+        </h2>
+
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-12 reveal reveal-delay-100">
+        <button class="filter-btn px-5 py-2.5 rounded-xl border border-transparent bg-brand-accent text-white text-xs font-bold tracking-wider uppercase transition-all duration-300" data-filter="all">All Works</button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl border border-brand-border bg-brand-white text-brand-secondary hover:text-brand-accent hover:border-brand-accent text-xs font-bold tracking-wider uppercase transition-all duration-300" data-filter="graphic">Graphic Design</button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl border border-brand-border bg-brand-white text-brand-secondary hover:text-brand-accent hover:border-brand-accent text-xs font-bold tracking-wider uppercase transition-all duration-300" data-filter="video">Video Editing</button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl border border-brand-border bg-brand-white text-brand-secondary hover:text-brand-accent hover:border-brand-accent text-xs font-bold tracking-wider uppercase transition-all duration-300" data-filter="3d">3D Visuals</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch reveal reveal-delay-200">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+    </section>
+
+
+    <!-- PROCESS SECTION (TIMELINE) -->
+    <section id="process" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4 mb-16 reveal">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Workflow</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          My Strategic <span class="accent-gradient">Design Process</span>
+        </h2>
+        <p class="text-brand-secondary text-sm md:text-base leading-relaxed">
+          I follow a structured methodology that bridges business goals with creative assets to deliver consistent, market-ready results.
+        </p>
+      </div>
+
+      <!-- Process Steps Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        
+        <!-- Timeline Connector (Desktop) -->
+        <div class="hidden lg:block absolute top-1/2 left-4 right-4 h-0.5 bg-gradient-to-r from-brand-border via-brand-accent/30 to-brand-border -translate-y-8 z-0"></div>
+
+        <!-- Step 1 -->
+        <div class="p-6 rounded-3xl glass-panel glass-panel-hover border-brand-border relative z-10 flex flex-col gap-4 reveal">
+          <div class="w-12 h-12 rounded-2xl bg-brand-white text-brand-accent font-extrabold text-lg flex items-center justify-center border border-brand-border self-start">
+            1
+          </div>
+          <h3 class="text-base font-bold text-brand-primary mt-2">Discussion</h3>
+          <p class="text-xs text-brand-secondary leading-relaxed">
+            Understanding your project vision, target audience segments, and business goals to outline scope deliverables.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-6 rounded-3xl glass-panel glass-panel-hover border-brand-border relative z-10 flex flex-col gap-4 reveal reveal-delay-100">
+          <div class="w-12 h-12 rounded-2xl bg-brand-white text-brand-accent font-extrabold text-lg flex items-center justify-center border border-brand-border self-start">
+            2
+          </div>
+          <h3 class="text-base font-bold text-brand-primary mt-2">Research</h3>
+          <p class="text-xs text-brand-secondary leading-relaxed">
+            Analyzing competitor visual systems, mood boarding, and planning design directions optimized for your niche.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-6 rounded-3xl glass-panel glass-panel-hover border-brand-border relative z-10 flex flex-col gap-4 reveal reveal-delay-200">
+          <div class="w-12 h-12 rounded-2xl bg-brand-white text-brand-accent font-extrabold text-lg flex items-center justify-center border border-brand-border self-start">
+            3
+          </div>
+          <h3 class="text-base font-bold text-brand-primary mt-2">Design</h3>
+          <p class="text-xs text-brand-secondary leading-relaxed">
+            Developing high-fidelity mockups, packaging structures, or grid templates with review milestones.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-6 rounded-3xl glass-panel glass-panel-hover border-brand-border relative z-10 flex flex-col gap-4 reveal reveal-delay-300">
+          <div class="w-12 h-12 rounded-2xl bg-brand-white text-brand-accent font-extrabold text-lg flex items-center justify-center border border-brand-border self-start">
+            4
+          </div>
+          <h3 class="text-base font-bold text-brand-primary mt-2">Delivery</h3>
+          <p class="text-xs text-brand-secondary leading-relaxed">
+            Supplying pixel-perfect vector source files, print-ready package files, and social media posting schedules.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATISTICS SECTION -->
+    <section id="statistics" class="py-20 px-6 md:px-12 bg-brand-dark border-y border-brand-border/10 relative">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
+        
+        <!-- Stat 1 -->
+        <div class="flex flex-col items-center text-center gap-1">
+          <span class="counter text-4xl md:text-5xl font-black accent-gradient tracking-tight" data-target="50" data-suffix="+">0+</span>
+          <span class="text-xs uppercase tracking-widest text-brand-secondary font-semibold mt-1">Projects Completed</span>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col items-center text-center gap-1">
+          <span class="counter text-4xl md:text-5xl font-black accent-gradient tracking-tight" data-target="35" data-suffix="+">0+</span>
+          <span class="text-xs uppercase tracking-widest text-brand-secondary font-semibold mt-1">Happy Clients</span>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="flex flex-col items-center text-center gap-1">
+          <span class="counter text-4xl md:text-5xl font-black accent-gradient tracking-tight" data-target="3" data-suffix="+">0+</span>
+          <span class="text-xs uppercase tracking-widest text-brand-secondary font-semibold mt-1">Years Experience</span>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="flex flex-col items-center text-center gap-1">
+          <span class="counter text-4xl md:text-5xl font-black accent-gradient tracking-tight" data-target="20" data-suffix="+">0+</span>
+          <span class="text-xs uppercase tracking-widest text-brand-secondary font-semibold mt-1">Brands Worked With</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-5xl mx-auto relative overflow-hidden">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4 mb-16 reveal">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">Testimonials</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          What My <span class="accent-gradient">Clients Say</span>
+        </h2>
+      </div>
+
+      <!-- Testimonial Slider Container -->
+      <div class="relative rounded-3xl glass-panel p-8 md:p-12 border-brand-border shadow-2xl reveal reveal-delay-200">
+        
+        <!-- Decorative quote icon -->
+        <div class="absolute top-6 right-8 text-brand-border opacity-20 pointer-events-none">
+          <i data-lucide="quote" class="w-24 h-24"></i>
+        </div>
+
+        <!-- Slide 1 -->
+        <div class="testimonial-slide block transition-opacity duration-500">
+          <div class="flex flex-col gap-6">
+            <!-- Stars -->
+            <div class="flex items-center gap-1 text-brand-border">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            
+            <blockquote class="text-base md:text-lg text-brand-primary leading-relaxed italic font-medium">
+              "Working with Harsh was a game changer for our skin care brand launch. He handled both our packaging design layout and social media launch grid. Our online presence felt premium from day one, and we saw a significant boost in engagement. He is incredibly professional and responsive."
+            </blockquote>
+            
+            <div class="flex items-center gap-4 mt-2">
+              <div class="w-12 h-12 rounded-xl bg-brand-white flex items-center justify-center text-brand-accent font-bold border border-brand-border">
+                AP
+              </div>
+              <div class="flex flex-col">
+                <cite class="text-sm font-bold text-brand-primary not-italic">Aanya Patel</cite>
+                <span class="text-xs text-brand-secondary font-medium">Founder, Aura Organics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="testimonial-slide hidden opacity-0 transition-opacity duration-500">
+          <div class="flex flex-col gap-6">
+            <!-- Stars -->
+            <div class="flex items-center gap-1 text-brand-border">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            
+            <blockquote class="text-base md:text-lg text-brand-primary leading-relaxed italic font-medium">
+              "Harsh Chauhan brings a rare combination of pure visual taste and brand marketing strategy. He designed our entire company brand guidelines and tech brochures. He is organized, consistently delivers files on time, and requires minimal feedback cycles."
+            </blockquote>
+            
+            <div class="flex items-center gap-4 mt-2">
+              <div class="w-12 h-12 rounded-xl bg-brand-white flex items-center justify-center text-brand-accent font-bold border border-brand-border">
+                RK
+              </div>
+              <div class="flex flex-col">
+                <cite class="text-sm font-bold text-brand-primary not-italic">Rohan Kapoor</cite>
+                <span class="text-xs text-brand-secondary font-medium">Marketing VP, Apex Software Group</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="testimonial-slide hidden opacity-0 transition-opacity duration-500">
+          <div class="flex flex-col gap-6">
+            <!-- Stars -->
+            <div class="flex items-center gap-1 text-brand-border">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            
+            <blockquote class="text-base md:text-lg text-brand-primary leading-relaxed italic font-medium">
+              "We hired Harsh to redesign our print catalogs and digital ad campaigns. The output was stunning - very clean, premium spacing, and exact alignment. Our lead generation increased because the ad visuals finally looked modern. We will definitely hire him again!"
+            </blockquote>
+            
+            <div class="flex items-center gap-4 mt-2">
+              <div class="w-12 h-12 rounded-xl bg-brand-white flex items-center justify-center text-brand-accent font-bold border border-brand-border">
+                MS
+              </div>
+              <div class="flex flex-col">
+                <cite class="text-sm font-bold text-brand-primary not-italic">Meera Sharma</cite>
+                <span class="text-xs text-brand-secondary font-medium">Creative Director, Vanguard Publishing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex items-center justify-between mt-8 border-t border-brand-border pt-6">
+          
+          <!-- Dots indicators -->
+          <div class="flex items-center gap-2">
+            <button class="testimonial-dot h-2 rounded-full bg-brand-accent w-6 transition-all duration-300" data-slide="0" aria-label="Slide 1"></button>
+            <button class="testimonial-dot h-2 rounded-full bg-brand-border w-2 transition-all duration-300" data-slide="1" aria-label="Slide 2"></button>
+            <button class="testimonial-dot h-2 rounded-full bg-brand-border w-2 transition-all duration-300" data-slide="2" aria-label="Slide 3"></button>
+          </div>
+
+          <!-- Arrows -->
+          <div class="flex items-center gap-3">
+            <button id="prev-testimonial" class="w-10 h-10 rounded-xl glass-panel border-brand-border flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent transition-all duration-200" aria-label="Previous Testimonial">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button id="next-testimonial" class="w-10 h-10 rounded-xl glass-panel border-brand-border flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-accent transition-all duration-200" aria-label="Next Testimonial">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE SECTION (WORK HISTORY) -->
+    <section id="experience" class="py-12 scroll-mt-20 px-6 md:px-12 max-w-7xl mx-auto relative">
+      
+      <!-- Section Title -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4 mb-16 reveal">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-brand-secondary uppercase tracking-widest">History</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary tracking-tight leading-tight">
+          Professional <span class="accent-gradient">Journey & Milestones</span>
+        </h2>
+      </div>
+
+      <!-- Experience Timeline -->
+      <div id="experience-timeline" class="max-w-4xl mx-auto relative pl-8 ml-4 md:ml-auto md:pl-0 md:grid md:grid-cols-2 md:gap-x-12 md:gap-y-12">
+        
+        <!-- Timeline Base Line (Mobile & Desktop) -->
+        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-brand-border md:-translate-x-0.5 z-0"></div>
+
+        <!-- Scroll-based Glowing Progress Line (Starts from top, grows downward to full height) -->
+        <div id="timeline-glow-line" class="absolute left-0 md:left-1/2 top-0 w-0.5 md:-translate-x-0.5 z-[2] bg-gradient-to-b from-brand-accent via-brand-accent to-brand-accent-hover shadow-[0_0_12px_rgba(109,92,255,0.6)] rounded-full transition-all duration-75 ease-out" style="height: 0%;"></div>
+
+        <!-- Experience Item 1 -->
+        <div class="relative mb-12 md:mb-0 md:text-right md:pr-12 md:col-start-1 reveal">
+          <!-- Minimal Glowing Milestone Dot -->
+          <div class="timeline-dot absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-brand-border shadow-[0_0_6px_rgba(109,92,255,0.2)] md:-left-auto md:-right-1.5 z-10 transition-all duration-300"></div>
+          
+          <span class="inline-block px-3 py-1 rounded-lg bg-brand-white border border-brand-border text-brand-accent text-xs font-semibold uppercase tracking-wider mb-2">2026 – PRESENT</span>
+          <h3 class="text-lg font-bold text-brand-primary">Design Faculty</h3>
+          <span class="text-sm font-semibold text-brand-primary block mt-1">EasySkill Career Academy</span>
+          <p class="text-xs text-brand-secondary leading-relaxed mt-2 max-w-lg md:ml-auto">
+            Educating and mentoring aspiring designers in Graphic Design, 2D/3D Animation, and Video Editing. Guiding students through industry-standard creative tools and practical workflows, with a focus on developing strong design fundamentals and professional skills.
+          </p>
+        </div>
+
+        <!-- Experience Item 2 -->
+        <div class="relative mb-12 md:mb-0 md:pl-12 md:col-start-2 md:mt-12 reveal reveal-delay-100">
+          <!-- Minimal Glowing Milestone Dot -->
+          <div class="timeline-dot absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-brand-border shadow-[0_0_6px_rgba(109,92,255,0.2)] md:-left-1.5 z-10 transition-all duration-300"></div>
+          
+          <span class="inline-block px-3 py-1 rounded-lg bg-brand-white border border-brand-border text-brand-accent text-xs font-semibold uppercase tracking-wider mb-2">2025 – 2026</span>
+          <h3 class="text-lg font-bold text-brand-primary">3D Artist & AI Asset Generator</h3>
+          <span class="text-sm font-semibold text-brand-primary block mt-1">HT Animation</span>
+          <p class="text-xs text-brand-secondary leading-relaxed mt-2 max-w-lg">
+            Worked as a 3D Artist, creating and developing 3D models, assets, and visual elements for creative projects. Worked separately as an AI Asset Generator, creating AI-generated images and visual assets using modern AI tools to support various creative and production requirements.
+          </p>
+        </div>
+
+        <!-- Experience Item 3 -->
+        <div class="relative mb-12 md:mb-0 md:text-right md:pr-12 md:col-start-1 md:mt-12 reveal reveal-delay-200">
+          <!-- Minimal Glowing Milestone Dot -->
+          <div class="timeline-dot absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-brand-border shadow-[0_0_6px_rgba(109,92,255,0.2)] md:-left-auto md:-right-1.5 z-10 transition-all duration-300"></div>
+          
+          <span class="inline-block px-3 py-1 rounded-lg bg-brand-white border border-brand-border text-brand-accent text-xs font-semibold uppercase tracking-wider mb-2">2024 – 2025</span>
+          <h3 class="text-lg font-bold text-brand-primary">Freelance Brand & Visual Designer</h3>
+          <span class="text-sm font-semibold text-brand-primary block mt-1">Independent Freelancer</span>
+          <p class="text-xs text-brand-secondary leading-relaxed mt-2 max-w-lg md:ml-auto">
+            Creating brand identities, logos, social media designs, and marketing materials for businesses and clients. Developing professional visual solutions that help brands build a strong and consistent identity across digital and print platforms.
+          </p>
+        </div>
+
+        <!-- Experience Item 4 -->
+        <div class="relative md:pl-12 md:col-start-2 md:mt-24 reveal reveal-delay-300">
+          <!-- Minimal Glowing Milestone Dot -->
+          <div class="timeline-dot absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-brand-border shadow-[0_0_6px_rgba(109,92,255,0.2)] md:-left-1.5 z-10 transition-all duration-300"></div>
+          
+          <span class="inline-block px-3 py-1 rounded-lg bg-brand-white border border-brand-border text-brand-accent text-xs font-semibold uppercase tracking-wider mb-2">2023 – 2024</span>
+          <h3 class="text-lg font-bold text-brand-primary">Learning Phase</h3>
+          <span class="text-sm font-semibold text-brand-primary block mt-1">Local Institute & Self-Learning</span>
+          <p class="text-xs text-brand-secondary leading-relaxed mt-2 max-w-lg">
+            Built a strong foundation in graphic design, 2D/3D animation, and video editing through professional training and self-learning. Developed practical skills in visual design, 3D modeling, animation, and creative workflows while gaining hands-on experience with industry-standard software.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 md:py-36 relative overflow-hidden flex flex-col items-center justify-center text-center bg-brand-dark">
+      
+
+      <div class="relative z-20 px-6 max-w-4xl mx-auto flex flex-col items-center gap-4 reveal">
+        
+        <!-- Section badge/accent label -->
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+          <span class="text-xs font-bold text-neutral-400 uppercase tracking-widest">GET IN TOUCH</span>
+          <span class="w-8 h-0.5 bg-brand-accent"></span>
+        </div>
+
+        <!-- Headline -->
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight select-none">
+          Let's <span class="accent-gradient">Talk?</span>
+        </h2>
+
+        <!-- Supporting text -->
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-lg mt-2 mb-6">
+          Ready to scale your branding and social engagement? Let's build something extraordinary together.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center w-full sm:w-auto">
+          <!-- Call Me Button -->
+          <a href="tel:9023125130" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-accent text-white font-bold text-sm hover:bg-brand-accent-hover transition-all duration-300 hover:scale-105 shadow-lg shadow-brand-accent/5 active:scale-98">
+            <i data-lucide="phone" class="w-4 h-4"></i> +91 90231 25130
+          </a>
+          <!-- Send an Enquiry Button -->
+          <button id="open-enquiry-btn" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-transparent border border-brand-accent text-brand-accent font-bold text-sm hover:bg-brand-accent hover:text-white transition-all duration-300 hover:scale-105 shadow-lg active:scale-98">
+            <i data-lucide="send" class="w-4 h-4"></i> Send an Enquiry
+          </button>
+        </div>
+
+        <!-- Minimal Details Row -->
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-12 text-xs text-slate-400 font-semibold border-t border-white/10 pt-6">
+          <a href="mailto:harsheasyskill501@gmail.com" class="flex items-center gap-1.5 hover:text-brand-accent transition-colors">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i> harsheasyskill501@gmail.com
+          </a>
+          <span class="hidden sm:inline text-slate-700">|</span>
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Surat, Gujarat, India
+          </span>
+          <span class="hidden sm:inline text-slate-700">|</span>
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i> Remote Consulting Globally
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-dark border-t border-brand-border/10 pt-16 pb-8 px-6 md:px-12 relative z-10">
+    <div class="max-w-7xl mx-auto flex flex-col gap-12">
+      
+      <!-- Top Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+        
+        <!-- Column 1: Brand -->
+        <div class="md:col-span-6 lg:col-span-4 flex flex-col gap-4">
+          <a href="#hero" class="flex items-center group w-fit">
+            <img src="/assets/logo.png" alt="Harsh design.co Logo" class="h-11 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
+          </a>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed mt-2">
+            A premium creative studio specializing in bespoke brand identities, cinematic video editing, 3D visuals, and strategic social media management.
+          </p>
+          
+          <!-- Social Icons -->
+          <div class="flex items-center gap-3 mt-2">
+            <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="w-9 h-9 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://behance.net" target="_blank" class="w-9 h-9 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300" aria-label="Behance">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M22 14.2h-7.3c.1.9.4 1.5.9 1.9.5.4 1.2.6 2 .6 1.4 0 2.2-.6 2.5-1.9h2c-.3 1.6-1 2.7-2.2 3.4-1.2.7-2.8 1-4.7 1-2.7 0-4.8-.8-6.1-2.4C5 15.2 4.3 12.9 4.3 10c0-2.8.7-5 2.1-6.6 1.4-1.6 3.4-2.4 6-2.4 2.5 0 4.5.8 5.8 2.3 1.3 1.5 1.9 3.7 1.9 6.5v1.4H8.2zm-12-3h7.1c-.1-1-.4-1.7-.8-2.2-.5-.5-1.1-.7-1.9-.7-.8 0-1.4.2-1.9.7-.5.5-.7 1.2-.7 2.2zM2 17.8H0V6.2h5.1c1.5 0 2.7.3 3.4 1 .8.7 1.1 1.6 1.1 2.8 0 .8-.2 1.4-.7 2-.5.5-1.1.8-1.9 1 .9.2 1.6.6 2.1 1.2.5.6.8 1.4.8 2.4 0 1.2-.4 2.2-1.2 2.9-.8.7-2 1.1-3.6 1.1H2zm2-2.1h2.9c.7 0 1.3-.1 1.6-.4.4-.3.5-.7.5-1.3 0-.5-.2-.9-.5-1.1-.4-.2-.9-.3-1.6-.3H4zm0-5.1h2.6c.7 0 1.2-.1 1.5-.4.3-.3.5-.6.5-1.1s-.2-.8-.5-1.1c-.3-.3-.8-.4-1.5-.4H4z"/></svg>
+            </a>
+            <a href="https://dribbble.com" target="_blank" class="w-9 h-9 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300" aria-label="Dribbble">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.12a9.66 9.66 0 00-4.08-1.02c-.75 0-1.48.06-2.19.18 1.55 3.9 2.2 7.82 2.2 7.85a9.7 9.7 0 004.07-7.01zm-5.71 7.79c-.06-.18-.73-3.92-2.3-7.73a15 15 0 00-6.19 5.32 9.67 9.67 0 008.49 2.41zm-10.3-1.05a13 13 0 015.65-4.94A17 17 0 007.45 6.4a9.7 9.7 0 00-5.63 9.22zm-.9-10.68a9.68 9.68 0 004.4 7.6 15 15 0 014.28-9.08A9.7 9.7 0 001.2 9.94zm10.8-7.94c.59 0 1.17.06 1.74.16a13.3 13.3 0 00-3.94 8.5 17 17 0 00-4.48-6.1 9.72 9.72 0 016.68-2.56zm5.82 1.34a15 15 0 014.1 5.92A9.7 9.7 0 0012 2.06c2.09 0 4.07.66 5.82 1.88z"/></svg>
+            </a>
+            <a href="https://wa.me/9023125130" target="_blank" class="w-9 h-9 rounded-full border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-brand-accent hover:scale-110 hover:-translate-y-0.5 transition-all duration-300" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.705 1.455h.008c6.56 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="md:col-span-6 lg:col-span-2 flex flex-col gap-4">
+          <span class="text-xs font-bold text-white uppercase tracking-widest">Quick Links</span>
+          <div class="flex flex-col gap-2">
+            <a href="#hero" class="text-xs text-slate-400 hover:text-white transition-colors w-fit">Home</a>
+            <a href="#about" class="text-xs text-slate-400 hover:text-white transition-colors w-fit">About Me</a>
+            <a href="#portfolio" class="text-xs text-slate-400 hover:text-white transition-colors w-fit">Selected Works</a>
+            <a href="#process" class="text-xs text-slate-400 hover:text-white transition-colors w-fit">My Workflow</a>
+            <a href="#experience" class="text-xs text-slate-400 hover:text-white transition-colors w-fit">Work Experience</a>
+          </div>
+        </div>
+
+        <!-- Column 3: Core Services -->
+        <div class="md:col-span-6 lg:col-span-3 flex flex-col gap-4">
+          <span class="text-xs font-bold text-white uppercase tracking-widest">Core Services</span>
+          <div class="flex flex-col gap-2">
+            <span class="text-xs text-slate-400">Graphic Design</span>
+            <span class="text-xs text-slate-400">Video Editing</span>
+            <span class="text-xs text-slate-400">2D/3D Animation</span>
+            <span class="text-xs text-slate-400">Branding & Visual Identity</span>
+            <span class="text-xs text-slate-400">Motion Graphics</span>
+            <span class="text-xs text-slate-400">Social Media Design</span>
+          </div>
+        </div>
+
+        <!-- Column 4: Contact / Let's Connect -->
+        <div class="md:col-span-6 lg:col-span-3 flex flex-col gap-4">
+          <span class="text-xs font-bold text-white uppercase tracking-widest">Let's Connect</span>
+          <div class="flex flex-col gap-2 text-xs">
+            <a href="mailto:harsheasyskill501@gmail.com" class="text-slate-400 hover:text-white transition-colors w-fit block py-0.5">harsheasyskill501@gmail.com</a>
+            <a href="tel:9023125130" class="text-slate-400 hover:text-white transition-colors w-fit block py-0.5">+91 90231 25130</a>
+            
+            <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-white mt-2 hover:translate-x-1 transition-transform w-fit group">
+              Get In Touch <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-neutral-400 group-hover:text-white transition-colors"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-slate-900/80 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Copyright -->
+        <span class="text-xs text-slate-400 font-medium">&copy; 2026 Harsh Chauhan. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP FLOATING BUTTON -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-xl bg-brand-accent text-white hover:bg-brand-accent-hover shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 z-40" aria-label="Back to top">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+
+  <!-- PORTFOLIO DETAILS MODAL OVERLAY -->
+  <div id="portfolio-modal" class="fixed inset-0 z-[100] bg-brand-bg/98 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 hidden">
+    
+    <!-- Close Button -->
+    <button id="modal-close" class="absolute top-6 right-6 z-50 w-12 h-12 rounded-2xl bg-brand-white hover:bg-brand-accent text-brand-secondary hover:text-white border border-brand-border hover:border-brand-accent flex items-center justify-center transition-all duration-300 shadow-2xl" aria-label="Close modal">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Case Study Scroll Wrapper -->
+    <div id="modal-scroll-wrapper" class="w-full h-full overflow-y-auto px-6 py-16 md:py-24">
+      <div class="max-w-5xl mx-auto flex flex-col gap-12">
+        
+        <!-- Project Metadata Header Card -->
+        <div class="rounded-3xl glass-panel border-brand-border bg-brand-white p-8 md:p-12 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div class="flex flex-col gap-4 max-w-3xl">
+            <span id="modal-category" class="text-xs font-bold uppercase tracking-widest text-brand-accent">Category</span>
+            <h3 id="modal-title" class="text-3xl md:text-4xl font-extrabold text-brand-primary leading-tight">Project Title</h3>
+            
+            <div class="flex gap-8 my-2 border-y border-brand-border py-4">
+              <div class="flex flex-col">
+                <span class="text-[10px] text-brand-secondary font-bold uppercase tracking-wider">Client</span>
+                <span id="modal-client" class="text-sm font-bold text-brand-primary mt-0.5">Client Name</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[10px] text-brand-secondary font-bold uppercase tracking-wider">Year</span>
+                <span id="modal-year" class="text-sm font-bold text-brand-primary mt-0.5">2026</span>
+              </div>
+            </div>
+            
+            <p id="modal-description" class="text-sm text-brand-secondary leading-relaxed font-medium">
+              Detailed descriptions.
+            </p>
+          </div>
+          
+          <!-- CTA Block -->
+          <div class="flex-shrink-0">
+            <a href="#contact" onclick="document.getElementById('modal-close').click();" class="inline-block px-8 py-4 rounded-xl bg-brand-accent text-white hover:bg-brand-accent-hover font-bold text-sm tracking-wide shadow-xl shadow-brand-accent/5 transition-all duration-300 hover:scale-105 active:scale-95">
+              Enquire About Similar Project
+            </a>
+          </div>
+        </div>
+        
+        <!-- Project Showcase Images stack -->
+        <div id="modal-images-showcase" class="flex flex-col gap-8 w-full items-center">
+          <!-- Rendered dynamically by JS -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- VIDEO PORTFOLIO MODAL OVERLAY -->
+  <div id="video-modal" class="fixed inset-0 z-[100] bg-brand-bg/98 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 hidden flex items-center justify-center p-4">
+    
+    <!-- Close Button -->
+    <button id="video-modal-close" class="absolute top-6 right-6 z-50 w-12 h-12 rounded-2xl bg-brand-white hover:bg-brand-accent text-brand-secondary hover:text-white border border-brand-border hover:border-brand-accent flex items-center justify-center transition-all duration-300 shadow-2xl" aria-label="Close video modal">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Video Player Box -->
+    <div class="max-w-5xl w-full aspect-video rounded-3xl overflow-hidden relative shadow-2xl border border-brand-border bg-black flex items-center justify-center">
+      <video id="lightbox-video" controls class="w-full h-full object-contain"></video>
+    </div>
+  </div>
+
+  <!-- ENQUIRY FORM MODAL OVERLAY -->
+  <div id="enquiry-modal" class="fixed inset-0 z-[100] bg-brand-bg/98 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 hidden flex items-center justify-center p-4">
+    
+    <!-- Close Button -->
+    <button id="enquiry-modal-close" class="absolute top-6 right-6 z-50 w-12 h-12 rounded-2xl bg-brand-white hover:bg-brand-accent text-brand-secondary hover:text-white border border-brand-border hover:border-brand-accent flex items-center justify-center transition-all duration-300 shadow-2xl" aria-label="Close modal">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Modal Content Card -->
+    <div class="max-w-2xl w-full rounded-3xl glass-panel p-8 md:p-10 border-brand-border bg-brand-white shadow-2xl relative overflow-y-auto max-h-[90vh]">
+      <h3 class="text-xl font-bold text-brand-primary mb-2">Send an Enquiry</h3>
+      <p class="text-xs text-brand-secondary mb-6">Outline your project requirements and I will get back to you shortly.</p>
+      
+      <!-- Contact Form -->
+      <form id="contact-form" class="flex flex-col gap-5">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Sender Name -->
+          <div class="flex flex-col gap-2">
+            <label for="sender-name" class="text-xs font-semibold text-brand-secondary uppercase tracking-wider">Full Name <span class="text-brand-accent">*</span></label>
+            <input type="text" id="sender-name" required placeholder="John Doe" class="form-input px-4 py-3.5 rounded-xl text-sm font-medium">
+          </div>
+          <!-- Sender Email -->
+          <div class="flex flex-col gap-2">
+            <label for="sender-email" class="text-xs font-semibold text-brand-secondary uppercase tracking-wider">Email Address <span class="text-brand-accent">*</span></label>
+            <input type="email" id="sender-email" required placeholder="john@example.com" class="form-input px-4 py-3.5 rounded-xl text-sm font-medium">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Sender Phone -->
+          <div class="flex flex-col gap-2">
+            <label for="sender-phone" class="text-xs font-semibold text-brand-secondary uppercase tracking-wider">Phone Number</label>
+            <input type="tel" id="sender-phone" placeholder="9876543210" class="form-input px-4 py-3.5 rounded-xl text-sm font-medium">
+          </div>
+          <!-- Project Type Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label for="project-type" class="text-xs font-semibold text-brand-secondary uppercase tracking-wider">Project Type</label>
+            <select id="project-type" class="form-input px-4 py-3.5 rounded-xl text-sm font-medium">
+              <option value="all" selected>All (Design & Social Media)</option>
+              <option value="social">Social Media Post Design / Management</option>
+              <option value="branding">Brand Identity Design</option>
+              <option value="logo">Logo Design</option>
+              <option value="packaging">Packaging Design</option>
+              <option value="print">Print & Brochures</option>
+              <option value="other">Other / Custom Request</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message Area -->
+        <div class="flex flex-col gap-2">
+          <label for="sender-message" class="text-xs font-semibold text-brand-secondary uppercase tracking-wider">Your Message <span class="text-brand-accent">*</span></label>
+          <textarea id="sender-message" required rows="5" placeholder="Outline your project requirements..." class="form-input px-4 py-3.5 rounded-xl text-sm font-medium resize-none"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-4 rounded-2xl bg-brand-accent text-white hover:bg-brand-accent-hover font-bold text-center shadow-lg shadow-brand-accent/10 hover:shadow-brand-accent/30 hover:scale-101 active:scale-98 transition-all duration-300 btn-premium mt-2">
+          Send Message
+        </button>
+
+        <!-- Quick Info Text -->
+        <p class="text-center text-xs text-brand-secondary mt-2 font-medium">
+          By submitting, you agree to Harsh Chauhan's response times (typically under 12 hours).
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast notification system container -->
+  <div id="toast-container" class="fixed bottom-6 left-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Custom Project Hover Cursor -->
+  <div id="custom-project-cursor" class="fixed pointer-events-none z-[110] text-[#6D5CFF] flex items-center justify-center opacity-0 scale-50 -translate-x-1/2 -translate-y-1/2">
+    <i data-lucide="expand" class="w-7 h-7 text-[#6D5CFF] filter drop-shadow-[0_2px_6px_rgba(255,255,255,0.6)]"></i>
+  </div>
+
+  <!-- Lucide Script -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Main JS Logic -->
+  <script src="main.js"></script>
+
+</body>
+</html>
+
+
+
+
+
