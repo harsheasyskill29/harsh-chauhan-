@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export function PortfolioModal({ project, onClose }) {
   if (!project) return null;
@@ -80,12 +81,13 @@ export function VideoModal({ src, onClose }) {
 export function EnquiryModal({ onClose }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', projectType: 'all', message: '' });
   const [toast, setToast] = useState(null);
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       setToast({ msg: 'Please fill in all required fields (Name, Email, Message).', success: false });
@@ -97,9 +99,31 @@ export function EnquiryModal({ onClose }) {
       setTimeout(() => setToast(null), 4500);
       return;
     }
-    setToast({ msg: "Thank you! Your message has been sent successfully. Harsh will contact you shortly.", success: true });
-    setTimeout(() => { setToast(null); onClose(); }, 4500);
-    setForm({ name: '', email: '', phone: '', projectType: 'all', message: '' });
+
+    setSending(true);
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          from_name: form.name,
+          from_email: form.email,
+          phone: form.phone,
+          project_type: form.projectType,
+          message: form.message,
+          to_email: 'harsheasyskill501@gmail.com',
+        },
+        { publicKey: 'YOUR_PUBLIC_KEY' }
+      );
+      setToast({ msg: "Thank you! Your message has been sent successfully. Harsh will contact you shortly.", success: true });
+      setTimeout(() => { setToast(null); onClose(); }, 4500);
+      setForm({ name: '', email: '', phone: '', projectType: 'all', message: '' });
+    } catch (err) {
+      setToast({ msg: 'Failed to send message. Please try again or email directly at harsheasyskill501@gmail.com', success: false });
+      setTimeout(() => setToast(null), 5000);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -148,8 +172,8 @@ export function EnquiryModal({ onClose }) {
             <textarea id="message" required rows="5" placeholder="Outline your project requirements..." value={form.message} onChange={handleChange} className="form-input px-4 py-3.5 rounded-xl text-sm font-medium resize-none"></textarea>
           </div>
 
-          <button type="submit" className="w-full py-4 rounded-2xl bg-brand-accent text-white hover:bg-brand-accent-hover font-bold text-center shadow-lg shadow-brand-accent/10 hover:shadow-brand-accent/30 hover:scale-101 active:scale-98 transition-all duration-300 btn-premium mt-2">
-            Send Message
+          <button type="submit" disabled={sending} className="w-full py-4 rounded-2xl bg-brand-accent text-white hover:bg-brand-accent-hover font-bold text-center shadow-lg shadow-brand-accent/10 hover:shadow-brand-accent/30 hover:scale-101 active:scale-98 transition-all duration-300 btn-premium mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
+            {sending ? 'Sending...' : 'Send Message'}
           </button>
 
           <p className="text-center text-xs text-brand-secondary mt-2 font-medium">

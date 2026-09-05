@@ -1,0 +1,8 @@
+# robots.txt for Harsh Chauhan Portfolio
+User-agent: *
+Allow: /
+
+Sitemap: https://harshdesign.in/sitemap.xml
+
+# Disallow admin/private paths
+Disallow: /admin/
