@@ -103,7 +103,7 @@ export function EnquiryModal({ onClose }) {
     setSending(true);
     try {
       await emailjs.send(
-        'service_8e8x6sf',
+        'service_42mez2w',
         'template_6jcqpp9',
         {
           from_name: form.name,
