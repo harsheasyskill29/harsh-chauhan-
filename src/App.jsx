@@ -25,6 +25,7 @@ function App() {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            entry.target.setAttribute('data-revealed', 'true');
             observer.unobserve(entry.target);
           }
         });
@@ -34,7 +35,7 @@ function App() {
 
     const observeElements = () => {
       document.querySelectorAll('.reveal').forEach(el => {
-        if (!el.classList.contains('active')) {
+        if (!el.classList.contains('active') && !el.hasAttribute('data-revealed')) {
           observer.observe(el);
         }
       });
@@ -58,13 +59,14 @@ function App() {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
+            entry.target.setAttribute('data-revealed', 'true');
             observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
-    document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal:not(.active):not([data-revealed="true"])').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, [portfolioModal, videoModal, enquiryModal]);
 

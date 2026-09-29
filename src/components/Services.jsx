@@ -27,17 +27,16 @@ export default function Services() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        {servicesData.map((service, idx) => {
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start reveal reveal-delay-100">
+        {servicesData.map((service) => {
           const Icon = iconMap[service.icon];
           const isOpen = openId === service.id;
-          const delayClass = idx === 1 ? 'reveal-delay-100' : idx === 2 ? 'reveal-delay-200' : '';
 
           return (
             <div
               key={service.id}
               onClick={() => toggle(service.id)}
-              className={`service-accordion p-8 rounded-3xl glass-panel glass-panel-hover border border-brand-border flex flex-col justify-between reveal ${delayClass} cursor-pointer transition-all duration-300 ${isOpen ? 'is-open' : ''}`}
+              className={`service-accordion p-8 rounded-3xl glass-panel glass-panel-hover border border-brand-border flex flex-col justify-between cursor-pointer transition-all duration-300 ${isOpen ? 'is-open' : ''}`}
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
