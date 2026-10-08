@@ -36,17 +36,6 @@ export const projectsData = [
     desc: "An engaging SaaS product walkthrough and conceptual feature animation sequence for Claude. Built using high-fidelity vector UI mockups, smooth viewport pan transitions, and keyframe-animated component highlights."
   },
   {
-    id: 3,
-    title: "3D Rubik's Cube Animation",
-    category: "3D Visuals / Animation",
-    filterCategory: "3d",
-    image: "/assets/rubik_thumbnail.jpg",
-    video: "/videos/rubik-cube-video.mp4",
-    client: "Personal Project",
-    year: "2026",
-    desc: "An interactive and detailed 3D rendering and motion simulation of a Rubik's Cube, utilizing realistic textures, glossy reflections, and smooth animation cycles."
-  },
-  {
     id: 4,
     title: "Voguel Streetwear Brand logo design",
     category: "Graphic Design / Streetwear Branding",
